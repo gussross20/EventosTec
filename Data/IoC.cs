@@ -7,7 +7,7 @@ namespace Data
     {
         public static IServiceCollection AddEntityFrameworkDiaTics(this IServiceCollection services, string connectionString)
         {
-            services.AddDbContext<DiaTics2025Ctx>(
+            services.AddDbContext<WebAppCtx>(
                options => options
                .UseSqlServer(connectionString)
                .EnableSensitiveDataLogging()

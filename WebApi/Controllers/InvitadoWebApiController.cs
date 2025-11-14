@@ -3,7 +3,7 @@ using Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
-namespace DiaTics2025WebApi.Controllers
+namespace WebApi.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]

@@ -1,7 +1,7 @@
 ﻿using Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DiaTics2025WebApi.Controllers
+namespace WebApi.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]

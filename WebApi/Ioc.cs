@@ -1,7 +1,7 @@
 ﻿using Business.Ngc;
 using Domain.Interfaces;
 
-namespace DiaTics2025WebApi
+namespace WebApi
 {
     public static class IoC
     {

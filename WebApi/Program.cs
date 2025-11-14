@@ -1,6 +1,6 @@
 using Business;
 using Business.Settings;
-using DiaTics2025WebApi;
+using WebApi;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,7 +18,7 @@ builder.Services.AddCors(options =>
 
 // Add services to the container.
 //GRR: IOC Repository
-builder.Services.AddRepositoryViProduce(builder.Configuration.GetConnectionString("DiaTics2025DB") ?? "");
+builder.Services.AddRepositoryViProduce(builder.Configuration.GetConnectionString("WebAppDB") ?? "");
 
 // GRR: IOC Business
 builder.Services.AddBusiness();

@@ -5,17 +5,17 @@ namespace Data
 {
     public class EfRepository : IEfRepository
     {
-        readonly DiaTics2025Ctx _diaTics2025Ctx;
+        readonly WebAppCtx _WebAppCtx;
         private IDbContextTransaction? _transaction;
 
-        public EfRepository(DiaTics2025Ctx diaTics2025Ctx)
+        public EfRepository(WebAppCtx WebAppCtx)
         {
-            _diaTics2025Ctx = diaTics2025Ctx;
+            _WebAppCtx = WebAppCtx;
         }
 
         public void BeginTransaction()
         {
-            _transaction = _diaTics2025Ctx.Database.BeginTransaction();
+            _transaction = _WebAppCtx.Database.BeginTransaction();
         }
 
         public void CloseTransaction()
@@ -38,21 +38,21 @@ namespace Data
 
         public void Remove<TEntity>(TEntity entity) where TEntity : class
         {
-            if (_diaTics2025Ctx.Entry(entity).State == EntityState.Detached)
+            if (_WebAppCtx.Entry(entity).State == EntityState.Detached)
             {
-                _diaTics2025Ctx.Set<TEntity>().Attach(entity);
+                _WebAppCtx.Set<TEntity>().Attach(entity);
             }
-            _diaTics2025Ctx.Set<TEntity>().Remove(entity);
+            _WebAppCtx.Set<TEntity>().Remove(entity);
         }
 
         public TEntity? Find<TEntity, TId>(TId id) where TEntity : class
         {
-            return _diaTics2025Ctx.Set<TEntity>().Find(id);
+            return _WebAppCtx.Set<TEntity>().Find(id);
         }
 
         public IQueryable<TEntity> Queryanle<TEntity>() where TEntity : class
         {
-            return _diaTics2025Ctx.Set<TEntity>().AsQueryable();
+            return _WebAppCtx.Set<TEntity>().AsQueryable();
         }
 
         public Task? RollbackAsync()
@@ -66,19 +66,19 @@ namespace Data
 
         public void Add<TEntity>(TEntity entity) where TEntity : class
         {
-            _diaTics2025Ctx.Set<TEntity>().Add(entity);
+            _WebAppCtx.Set<TEntity>().Add(entity);
 
         }
 
         public void Update<TEntity>(TEntity entity) where TEntity : class
         {
-            _diaTics2025Ctx.Set<TEntity>().Attach(entity);
-            _diaTics2025Ctx.Entry(entity).State = EntityState.Modified;
+            _WebAppCtx.Set<TEntity>().Attach(entity);
+            _WebAppCtx.Entry(entity).State = EntityState.Modified;
         }
 
         public Task SaveChangesAsync()
         {
-            return _diaTics2025Ctx.SaveChangesAsync();
+            return _WebAppCtx.SaveChangesAsync();
         }
     }
 }

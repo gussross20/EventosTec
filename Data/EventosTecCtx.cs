@@ -2,9 +2,9 @@
 
 namespace Data
 {
-    public class DiaTics2025Ctx : DbContext
+    public class WebAppCtx : DbContext
     {
-        public DiaTics2025Ctx(DbContextOptions<DiaTics2025Ctx> options) : base(options)
+        public WebAppCtx(DbContextOptions<WebAppCtx> options) : base(options)
         {
         }
 

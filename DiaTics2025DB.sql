@@ -1,12 +1,12 @@
 --USE MASTER
---DROP DATABASE DiaTics2025DB
+--DROP DATABASE WebAppDB
 
 USE MASTER
 
-CREATE DATABASE DiaTics2025DB
+CREATE DATABASE WebAppDB
 COLLATE Modern_Spanish_CI_AI; 
 GO
-USE DiaTics2025DB
+USE WebAppDB
 
 -- #################################################### --
 -- #################################################### --

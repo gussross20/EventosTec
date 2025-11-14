@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
-VisualStudioVersion = 18.0.11205.157 d18.0
+VisualStudioVersion = 18.0.11205.157
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "WebApp\WebApp.csproj", "{E7EC146A-D51D-410F-A241-94E8C187D0A6}"
 EndProject
@@ -17,7 +17,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
-		DiaTics2025DB.sql = DiaTics2025DB.sql
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{4B600B81-6639-4A08-BF55-92A7EE1402B4}"
@@ -27,6 +26,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{1567F0B9-019C-4228-AAA0-B6DB6CF47107}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "WebApi\WebApi.csproj", "{56E4C9C2-C376-45FF-AE2F-AF85349207A3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{70816EE0-B9E3-4F7F-A7C7-027C4F79C883}"
+	ProjectSection(SolutionItems) = preProject
+		DiaTics2025DB.sql = DiaTics2025DB.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +73,7 @@ Global
 		{3E56A7EC-3220-48EA-8A8B-BDD8490D1B15} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{1567F0B9-019C-4228-AAA0-B6DB6CF47107} = {940E39D4-1B67-42E7-A707-8F9654900210}
 		{56E4C9C2-C376-45FF-AE2F-AF85349207A3} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{70816EE0-B9E3-4F7F-A7C7-027C4F79C883} = {F10106F3-77CC-4226-844A-BF046F387187}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BA9892C2-B0BA-40B3-BD4C-BE983EE18C7F}

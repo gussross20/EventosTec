@@ -3,21 +3,21 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
 # Copiamos la solución
-COPY DiaTics2025.sln .
+COPY WebApp.sln .
 
 # Copiamos todos los proyectos necesarios 
-COPY DiaTics2025/DiaTics2025.csproj DiaTics2025/
+COPY WebApp/WebApp.csproj WebApp/
 
 COPY Shared/Domain.csproj Shared/
-COPY DiaTics2025Pxy/Service.csproj DiaTics2025Pxy/
+COPY WebAppPxy/Service.csproj WebAppPxy/
 
 COPY . .
 
 # Restauramos las dependencias
-RUN dotnet restore DiaTics2025.sln
+RUN dotnet restore WebApp.sln
 
 # Publicamos la app en modo Release
-WORKDIR /src/DiaTics2025
+WORKDIR /src/WebApp
 RUN dotnet publish -c Release -o /app/build
 
 # Etapa de producción

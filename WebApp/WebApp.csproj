@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DiaTics2025Pxy\Service.csproj" />
+    <ProjectReference Include="..\Service\Service.csproj" />
     <ProjectReference Include="..\Shared\Domain.csproj" />
   </ItemGroup>
 

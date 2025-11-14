@@ -1,5 +1,5 @@
 using Blazored.Toast;
-using DiaTics2025;
+using WebApp;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Service;

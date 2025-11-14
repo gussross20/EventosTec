@@ -1,7 +1,7 @@
 ﻿using Domain.Interfaces;
 using Service.Srv;
 
-namespace DiaTics2025
+namespace WebApp
 {
     public static class IoC
     {
