@@ -29,6 +29,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "WebApi\WebApi.csp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{70816EE0-B9E3-4F7F-A7C7-027C4F79C883}"
 	ProjectSection(SolutionItems) = preProject
+		DiaIngInformatico2025DB.sql = DiaIngInformatico2025DB.sql
 		DiaTics2025DB.sql = DiaTics2025DB.sql
 	EndProjectSection
 EndProject
