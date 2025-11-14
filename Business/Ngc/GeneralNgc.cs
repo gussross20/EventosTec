@@ -1,8 +1,5 @@
 ﻿using Data;
-using Domain.Dto;
-using Domain.Entities;
 using Domain.Interfaces;
-using Microsoft.EntityFrameworkCore;
 
 namespace Business.Ngc
 {
@@ -19,18 +16,6 @@ namespace Business.Ngc
 
         #endregion
 
-        public async Task<List<ElementoDto<byte>>> Obtener_Lst_Elemento_Taller()
-        {
-            var query = from t in _efRpstry.Queryanle<TallerEtd>()
-                        orderby t.Nombre
-                        select new ElementoDto<byte>
-                        {
-                            Valor = t.Id,
-                            Texto = t.Nombre.ToUpper()
-                        };
 
-            var result = await query.ToListAsync();
-            return result;
-        }
     }
 }

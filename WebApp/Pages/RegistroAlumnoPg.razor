@@ -104,6 +104,7 @@
         if (!string.IsNullOrEmpty(numeroControl))
         {
             cargando = true;
+            numeroControl = numeroControl.Trim();
             alumnoEtd = await _alumnoService.Obtener_Alumno_Detalle(numeroControl);
             cargando = false;
 

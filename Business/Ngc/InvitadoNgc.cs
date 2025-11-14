@@ -60,7 +60,6 @@ namespace Business.Ngc
 
                 var invitadoParaCorreo_Etd = await _efRpstry.Queryanle<InvitadoEtd>()
                     .Where(i => i.Id == invitado.Id)
-                    .Include(i => i.TallerRegistrado)
                     .SingleAsync();
 
                 var bodyCorreo = _emailService.Obtener_Body_ParaInvitado(invitadoParaCorreo_Etd!);

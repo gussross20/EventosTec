@@ -24,7 +24,7 @@ namespace Business.Ngc
         #endregion
 
         public async Task<AlumnoEtd> Obtener_Alumno_Detalle(string numeroControl)
-        {
+        {            
             var alumno_Qry = from a in _efRpstry.Queryanle<AlumnoEtd>()
                              where a.NumeroControl == numeroControl
                              select new AlumnoEtd

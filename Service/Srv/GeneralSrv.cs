@@ -1,6 +1,4 @@
-﻿using Domain.Dto;
-using Domain.Interfaces;
-using System.Reflection;
+﻿using Domain.Interfaces;
 
 namespace Service.Srv
 {
@@ -19,11 +17,5 @@ namespace Service.Srv
 
         #endregion        
 
-        public Task<List<ElementoDto<byte>>> Obtener_Lst_Elemento_Taller()
-        {
-            _httpClientFactoryService.Metodo = _constWebApiRoute + MethodBase.GetCurrentMethod()?.Name ?? "";
-            var result = _httpClientFactoryService.InvocarGetAsync<List<ElementoDto<byte>>>();
-            return result;
-        }
     }    
 }

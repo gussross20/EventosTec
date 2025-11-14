@@ -16,12 +16,6 @@ namespace WebApi.Controllers
         }
 
         #endregion
-
-        [HttpGet]
-        public async Task<IActionResult> Obtener_Lst_Elemento_Taller()
-        {
-            var result = await _generalNgc.Obtener_Lst_Elemento_Taller();
-            return Ok(result);
-        }
+       
     }
 }

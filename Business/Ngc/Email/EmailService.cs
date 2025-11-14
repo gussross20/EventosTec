@@ -28,7 +28,7 @@ public class EmailService
             var mensaje = new MimeMessage();
             mensaje.From.Add(new MailboxAddress(_mailSettings.Value.DisplayName, _mailSettings.Value.From));
             mensaje.To.Add(new MailboxAddress(nombreDestinatario, destinatario));
-            mensaje.Subject = "Registro al día de las TICS";
+            mensaje.Subject = "Registro al día del informático 2025";
 
             var builder = new BodyBuilder();
 
@@ -82,7 +82,7 @@ public class EmailService
                 style='background-color:#fff;font-family:-apple-system,BlinkMacSystemFont,""Segoe UI"",Roboto,Oxygen-Sans,Ubuntu,Cantarell,""Helvetica Neue"",sans-serif'>
                 <div
                   style=""display:none;overflow:hidden;line-height:1px;opacity:0;max-height:0;max-width:0"">
-                  Tu código QR personalizado está listo para usar
+                  Tu código QR está listo para usar
                 </div>
                 <table
                   align=""center""
@@ -106,8 +106,7 @@ public class EmailService
                           <tbody>
                             <tr>
                               <td align=""center"">
-                                <!-- Usamos la URL pública del logo en lugar de un cid -->
-                                <img src=""" + logoUrl + @""" alt=""Logo de Mi Empresa"" style=""max-width:200px;height:auto;"" />
+                                <img src=""" + logoUrl + @""" alt=""TecSerdan"" style=""max-width:200px;height:auto;"" />
                               </td>
                             </tr>
                           </tbody>
@@ -157,7 +156,7 @@ public class EmailService
                                         </h2>
                                         <p
                                           style=""font-size:16px;line-height:24px;margin-bottom:16px;margin-top:16px"">
-                                          Gracias por registrarte al evento del día de las TICS en el instituto tecnologico superior de ciudad Serdan.
+                                          Gracias por registrarte al evento del día del día del informático en el instituto tecnologico superior de ciudad Serdan.
                                         </p>
                                         <p
                                           style=""font-size:16px;line-height:24px;margin-top:-5px;margin-bottom:16px"">
@@ -216,7 +215,7 @@ public class EmailService
                 style='background-color:#fff;font-family:-apple-system,BlinkMacSystemFont,""Segoe UI"",Roboto,Oxygen-Sans,Ubuntu,Cantarell,""Helvetica Neue"",sans-serif'>
                 <div
                   style=""display:none;overflow:hidden;line-height:1px;opacity:0;max-height:0;max-width:0"">
-                  Tu código QR personalizado está listo para usar
+                  Tu código QR está listo para usar
                 </div>
                 <table
                   align=""center""
@@ -239,9 +238,8 @@ public class EmailService
                           style=""padding:30px 20px"">
                           <tbody>
                             <tr>
-                              <td align=""center"">
-                                <!-- Usamos la URL pública del logo en lugar de un cid -->
-                                <img src=""" + logoUrl + @""" alt=""Logo de Mi Empresa"" style=""max-width:200px;height:auto;"" />
+                              <td align=""center"">                              
+                                <img src=""" + logoUrl + @""" alt=""TecSerdan"" style=""max-width:200px;height:auto;"" />
                               </td>
                             </tr>
                           </tbody>
@@ -291,7 +289,7 @@ public class EmailService
                                         </h2>
                                         <p
                                           style=""font-size:16px;line-height:24px;margin-bottom:16px;margin-top:16px"">
-                                          Gracias por registrarte al evento del día de las TICS en el instituto tecnologico superior de ciudad Serdan.
+                                          Gracias por registrarte al evento del día del informático en el instituto tecnologico superior de ciudad Serdan.
                                         </p>
                                         <p
                                           style=""font-size:16px;line-height:24px;margin-top:-5px;margin-bottom:16px"">
@@ -308,11 +306,7 @@ public class EmailService
                                         <p
                                           style=""font-size:16px;line-height:24px;margin-top:-5px;margin-bottom:16px"">
                                           <b>Correo electrónico: </b>" + invitado.CorreoElectronico + @"
-                                        </p>
-                                        <p
-                                          style=""font-size:16px;line-height:24px;margin-top:-5px;margin-bottom:16px"">
-                                          <b>Taller registrado: </b>" + invitado.TallerRegistrado!.Nombre + @"
-                                        </p>
+                                        </p>                                       
                                         <p
                                           style=""font-size:16px;line-height:24px;margin-top:-5px;margin-bottom:16px"">
                                           <b>Para utilizar tu código QR: </b>
