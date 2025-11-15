@@ -1,0 +1,125 @@
+@page "/panelistas"
+
+@inject NavigationManager NavigationManager
+
+<PageTitle>Panelistas</PageTitle>
+
+<style>
+/* Panelistas styles copied from Home.razor */
+.panelists-section { background: linear-gradient(180deg,#f8fbff 0%, #eef6fb 100%); padding: 4rem 1rem; }
+.panelists-wrap { max-width:1200px;margin:0 auto; }
+.panel-badge { display:inline-flex; align-items:center; gap:.6rem; background:#fff2e8; padding:.5rem 1rem; border-radius:30px; box-shadow:0 6px 18px rgba(2,6,23,0.06); color:#d4702a; margin:0 auto 1rem; }
+.panelists-title { text-align:center; font-weight:600; margin-bottom:.25rem; }
+.panelistas-sub { text-align:center; color:#6b7280; margin-bottom:2rem; }
+.profiles-row { display:grid; grid-template-columns: repeat(3,1fr); gap:1.5rem; margin-bottom:2.5rem; }
+.profile-card { background:white; border-radius:12px; overflow:hidden; box-shadow: 0 6px 18px rgba(2,6,23,0.06); display:flex; flex-direction:column; }
+.profile-media { height:220px; background-size:cover; background-position:center; position:relative; }
+.profile-media::after {
+    /* dark overlay to improve text/badge contrast */
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(6,10,18,0.18) 0%, rgba(6,10,18,0.32) 100%);
+    transition: background .25s ease;
+    pointer-events: none;
+}
+.profile-media:hover::after { background: linear-gradient(180deg, rgba(6,10,18,0.08) 0%, rgba(6,10,18,0.18) 100%); }
+.profile-generation { position:absolute; left:16px; bottom:16px; background:#ff7a18; color:white; padding:8px 14px; border-radius:20px; font-size:0.9rem; box-shadow:0 6px 12px rgba(15,23,42,0.12); }
+.profile-body { padding:1.2rem; }
+.profile-name { margin:0 0 .35rem 0; font-weight:700; }
+.profile-role { margin:0; color:#0b63f6; text-decoration:none; display:inline-flex; align-items:center; gap:.5rem; }
+.profile-org { display:flex; gap:.5rem; align-items:center; color:#6b7280; margin-top:.65rem; font-size:0.95rem; }
+.profile-desc { margin-top:0.9rem; color:#475569; font-size:0.95rem; line-height:1.5 }
+.profile-link { display:inline-flex; align-items:center; gap:.5rem; margin-top:0.9rem; color:#0b63f6; text-decoration:none; }
+
+/* Icon tweaks inside cards */
+.profile-body .bi { font-size:1rem; vertical-align:middle; }
+.profile-role .bi { color: #0b63f6; }
+.profile-link .bi { color: #0b63f6; }
+.profile-org .bi { color: #9aa3b2; }
+
+/* Make top of media rounded so it matches the card radius */
+.profile-card .profile-media { border-top-left-radius:12px; border-top-right-radius:12px; }
+
+/* Slight inset shadow at top-right to mimic card look */
+.profile-media::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 24px;
+    background: linear-gradient(90deg, rgba(0,0,0,0.04), rgba(255,255,255,0));
+    border-top-right-radius:12px;
+    pointer-events: none;
+}
+
+/* Centered highlight panel */
+.panel-highlight-wrap { display:flex; justify-content:center; }
+.panel-highlight { max-width:900px; background:#eaf5ff; border-radius:12px; padding:1.8rem 2rem; position:relative; box-shadow:0 10px 30px rgba(2,6,23,0.06); margin-bottom:2.5rem; text-align:center; }
+.panel-highlight::before { content:''; position:absolute; left:-12px; top:10px; bottom:10px; width:6px; background:#2b8cff; border-top-left-radius:8px; border-bottom-left-radius:8px; }
+.panel-highlight h4 { text-align:center; margin:0 0 .5rem 0; color:#0b63f6; }
+.panel-highlight .panel-time { text-align:center; font-weight:700; margin-bottom:.6rem; }
+.panel-highlight p { text-align:center; color:#475569; margin:0 auto; max-width:760px; }
+
+@@media (max-width: 992px) { .profiles-row { grid-template-columns: repeat(2,1fr); } }
+@@media (max-width: 576px) { .profiles-row { grid-template-columns: 1fr; } .profile-media { height:180px } }
+</style>
+
+<section class="panelistas-section">
+    <div class="panelistas-wrap">
+        <div class="panel-badge">Panel de Egresados</div>
+        <h3 class="panelists-title">Panelistas Destacados</h3>
+        <p class="panelistas-sub">Conoce a los egresados exitosos que compartirán sus experiencias profesionales y consejos para tu carrera</p>
+
+        <div class="profiles-row">
+            <div class="profile-card">
+                <div class="profile-media" style="background-image:url('images/panel1.jpg')">
+                    <div class="profile-generation">Generación 2015</div>
+                </div>
+                <div class="profile-body">
+                    <p class="profile-name">Ing. María Elena Rodríguez</p>
+                    <a class="profile-role" href="#"><span class="bi bi-person-badge" aria-hidden="true"></span>Data Scientist Senior</a>
+                    <div class="profile-org"> <span class="bi bi-building"></span> Google México</div>
+                    <p class="profile-desc">Especialista en machine learning y análisis de datos a gran escala. Ha liderado proyectos de IA en múltiples países.</p>
+                    <a class="profile-link" href="#"><span class="bi bi-box-arrow-up-right" aria-hidden="true"></span>Ver perfil profesional</a>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <div class="profile-media" style="background-image:url('images/panel2.jpg')">
+                    <div class="profile-generation">Generación 2012</div>
+                </div>
+                <div class="profile-body">
+                    <p class="profile-name">Ing. Carlos Alberto Méndez</p>
+                    <a class="profile-role" href="#"><span class="bi bi-briefcase" aria-hidden="true"></span>Chief Technology Officer</a>
+                    <div class="profile-org"> <span class="bi bi-building"></span> Startups Tech SA</div>
+                    <p class="profile-desc">Emprendedor tecnológico con 13 años de experiencia. Fundador de múltiples startups exitosas en el sector tech.</p>
+                    <a class="profile-link" href="#"><span class="bi bi-box-arrow-up-right" aria-hidden="true"></span>Ver perfil profesional</a>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <div class="profile-media" style="background-image:url('images/panel3.jpg')">
+                    <div class="profile-generation">Generación 2014</div>
+                </div>
+                <div class="profile-body">
+                    <p class="profile-name">Ing. Ana Patricia Jiménez</p>
+                    <a class="profile-role" href="#"><span class="bi bi-person-workspace" aria-hidden="true"></span>Software Engineering Manager</a>
+                    <div class="profile-org"> <span class="bi bi-building"></span> Amazon Web Services</div>
+                    <p class="profile-desc">Líder en arquitectura de sistemas distribuidos y cloud computing. Mentora activa de nuevos ingenieros.</p>
+                    <a class="profile-link" href="#"><span class="bi bi-box-arrow-up-right" aria-hidden="true"></span>Ver perfil profesional</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-highlight-wrap">
+            <div class="panel-highlight">
+                <h4>Panel de Egresados</h4>
+                <div class="panel-time">Viernes 21 de Noviembre, 13:30 - 15:00 hrs</div>
+                <p>Únete a esta sesión especial donde nuestros egresados compartirán sus trayectorias profesionales, desafíos superados y consejos valiosos para estudiantes y próximos graduados. Habrá tiempo para preguntas y respuestas.</p>
+            </div>
+        </div>
+
+    </div>
+</section>

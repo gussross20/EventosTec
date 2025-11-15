@@ -15,7 +15,6 @@ builder.Services.AddCors(options =>
     });
 });
 
-
 // Add services to the container.
 //GRR: IOC Repository
 builder.Services.AddRepositoryViProduce(builder.Configuration.GetConnectionString("WebAppDB") ?? "");

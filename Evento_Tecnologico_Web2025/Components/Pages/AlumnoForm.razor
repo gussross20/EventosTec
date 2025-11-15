@@ -1,0 +1,128 @@
+﻿@using Blazored.Toast.Services
+@using Domain
+@using Domain.Entities
+@using Domain.Interfaces
+@inject IAlumnoItf _alumnoService
+@inject IToastService ToastService
+
+<section id="Registro" class="registro section mt-5">   
+
+    @if (cargando)
+    {
+        <div class="loader-overlay">
+            <div class="spinner-border text-primary" role="status" style="width: 4rem; height: 4rem;">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="mt-3 h4 text-primary">Cargando...</div>
+        </div>
+    }
+
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row justify-content-center gy-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="numeroControl" class="form-label">Número de control</label>
+                        <input id="numeroControl" class="form-control" @bind="numeroControl" />
+                    </div>
+                    <div class="col-md-6 d-flex align-items-end">
+                        <button class="btn btn-primary" @onclick="BuscarAlumno">Buscar</button>
+                    </div>
+                </div>
+
+                <div class="row g-3 mt-3">
+
+                    <div class="col-md-6">
+                        <label for="nombre" class="form-label">Nombre completo</label>
+                        <label id="nombre" class="form-control bg-light">
+                            @((MarkupString)(alumnoEtd == null
+                                                        ? "&nbsp;"
+                                                        : $"{alumnoEtd.Nombre} {alumnoEtd.ApellidoPaterno} {alumnoEtd.ApellidoMaterno}"))
+                        </label>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="carrera" class="form-label">Carrera</label>
+                        <label id="carrera" class="form-control bg-light">
+                            @((MarkupString)(alumnoEtd == null
+                                                        ? "&nbsp;"
+                                                        : $"{alumnoEtd.Carrera}"))
+                        </label>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="estaRegistrado" class="form-label">Está registrado</label>
+                        <label id="estaRegistrado" class="form-control bg-light">
+                            @((MarkupString)(alumnoEtd == null
+                                                        ? "&nbsp;"
+                                                        : $"{(alumnoEtd.RegistradoParaEvento ? "Sí" : "No")}"))
+                        </label>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="fechaRegistro" class="form-label">Fecha de registro</label>
+                        <label id="fechaRegistro" class="form-control bg-light">
+                            @((MarkupString)(alumnoEtd?.FechaRegistro != null
+                                                        ? alumnoEtd.FechaRegistro.Value.ToString(FormatValue.LongDate)
+                                                        : "&nbsp;"))
+                        </label>
+                    </div>
+                    @if (mostrarBotonRegistro)
+                    {
+                        <div class="row mt-3">
+                            <div class="col text-center">
+                                <button class="btn btn-primary" @onclick="RegistrarAlEvento">Registrar al evento</button>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+@code {
+    private bool cargando = false;
+    private bool mostrarBotonRegistro = false;
+    private string numeroControl = "";
+    private AlumnoEtd? alumnoEtd;
+
+    private async Task BuscarAlumno()
+    {
+        if (!string.IsNullOrEmpty(numeroControl))
+        {
+            cargando = true;
+            numeroControl = numeroControl.Trim();
+            alumnoEtd = await _alumnoService.Obtener_Alumno_Detalle(numeroControl);
+            cargando = false;
+
+            mostrarBotonRegistro = alumnoEtd != null && !alumnoEtd.RegistradoParaEvento;
+        }
+    }
+
+    private async Task RegistrarAlEvento()
+    {
+        if (alumnoEtd is not null)
+        {
+            cargando = true;
+            var result = await _alumnoService.Registrar_Alumno(alumnoEtd);
+            if (result.Resultado)
+            {
+                ToastService.ShowSuccess(result.Mensaje);
+                mostrarBotonRegistro = false;
+                alumnoEtd.RegistradoParaEvento = true;
+                alumnoEtd.FechaRegistro = DateTime.Now;
+            }
+            else
+            {
+                ToastService.ShowError(result.Mensaje);
+            }
+            Console.WriteLine(result);
+            cargando = false;
+        }
+    }
+}

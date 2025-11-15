@@ -1,0 +1,105 @@
+﻿@using Blazored.Toast.Services
+@using Domain
+@using Domain.Dto
+@using Domain.Entities
+@using Domain.Interfaces
+@inject IInvitadoItf _invitadoService
+@inject IGeneralItf _generalService
+@inject IToastService ToastService
+
+<section id="Registro" class="registro section mt-5">
+
+    @if (cargando)
+    {
+        <div class="loader-overlay">
+            <div class="spinner-border text-primary" role="status" style="width: 4rem; height: 4rem;">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <div class="mt-3 h4 text-primary">Cargando...</div>
+        </div>
+    }
+
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <!-- Aquí se pasa el modelo a EditForm -->
+
+        <EditForm Model="@invitado" OnValidSubmit="HandleValidSubmit" Context="formContext">
+            <DataAnnotationsValidator />
+
+            <div class="row justify-content-center gy-4 ">
+                <div class="container">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="nombre" class="form-label">Nombre</label>
+                            <InputText id="nombre" class="form-control form-label-required" @bind-Value="invitado.Nombre" />
+                            <ValidationMessage For="@(() => invitado.Nombre)" />
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="apellidoPaterno" class="form-label">Apellido paterno</label>
+                            <InputText id="apellidoPaterno" class="form-control form-label-required" @bind-Value="invitado.ApellidoPaterno" />
+                            <ValidationMessage For="@(() => invitado.ApellidoPaterno)" />
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="apellidoMaterno" class="form-label">Apellido materno</label>
+                            <InputText id="apellidoMaterno" class="form-control form-label-required" @bind-Value="invitado.ApellidoMaterno" />
+                            <ValidationMessage For="@(() => invitado.ApellidoMaterno)" />
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="escuela" class="form-label">Escuela</label>
+                            <InputText id="escuela" class="form-control form-label-required" @bind-Value="invitado.Escuela" />
+                            <ValidationMessage For="@(() => invitado.Escuela)" />
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="correo" class="form-label">Correo electrónico</label>
+                            <InputText id="correo" class="form-control form-label-required" @bind-Value="invitado.CorreoElectronico" />
+                            <ValidationMessage For="@(() => invitado.CorreoElectronico)" />
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col text-center">
+                    <button type="submit" class="btn btn-primary">Registrar al evento</button>
+                </div>
+            </div>
+        </EditForm>
+    </div>
+
+</section>
+
+@code {
+    private bool cargando = false;
+    private InvitadoEtd invitado = new InvitadoEtd();
+
+    private async Task HandleValidSubmit()
+    {
+        try
+        {
+            cargando = true;
+            var result = await _invitadoService.Registrar_Invitado(invitado);
+
+            if (result.Resultado)
+            {
+                ToastService.ShowSuccess(result.Mensaje);
+                // Reiniciar el formulario después del registro exitoso
+                invitado = new InvitadoEtd();
+            }
+            else
+            {
+                ToastService.ShowError(result.Mensaje);
+            }
+        }
+        catch (Exception ex)
+        {
+            ToastService.ShowError($"Error al registrar: {ex.Message}");
+        }
+        finally
+        {
+            cargando = false;
+        }
+    }
+}
